@@ -6,4 +6,5 @@ export default {
   darkText: '#61605b',
   red: '#d23724',
   green: '#61b253',
+  backgroundGrey: '#f9f9f9',
 };
