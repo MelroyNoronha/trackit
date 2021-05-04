@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.light,
     borderWidth: 1,
     borderColor: colors.borderGrey,
-    borderRadius: 5,
+    borderRadius: 10,
   },
   leftPane: {
     justifyContent: 'center',
