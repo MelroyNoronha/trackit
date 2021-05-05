@@ -7,4 +7,5 @@ export default {
   red: '#d23724',
   green: '#61b253',
   backgroundGrey: '#f9f9f9',
+  darkOpacity: 'rgba(0,0,0,0.5)',
 };
