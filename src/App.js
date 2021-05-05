@@ -5,6 +5,7 @@ import colors from './utils/colors';
 import Header from './components/Header';
 import Dashboard from './components/Dashboard';
 import IncomeExpenseList from './components/IncomeExpenseList';
+import AddButton from './components/AddButton';
 
 const dummyData = [
   {
@@ -44,6 +45,7 @@ const App = () => {
       <Header />
       <Dashboard balance="$3,000" income="$7,329" expense="$4,329" />
       <IncomeExpenseList data={dummyData} />
+      <AddButton />
     </View>
   );
 };
