@@ -1,10 +1,34 @@
-import React from 'react';
-import {View, Text, SectionList, StyleSheet} from 'react-native';
+import React, {useState} from 'react';
+import {
+  View,
+  TouchableOpacity,
+  Text,
+  SectionList,
+  StyleSheet,
+} from 'react-native';
 
 import colors from '../utils/colors';
+import IncomeExpenseDetailsModal from './IncomeExpenseDetailsModal';
 
 const IncomeExpenseList = props => {
   const {data} = props;
+
+  const [detailsModalVisible, setDetailsModalVisible] = useState(false);
+
+  const [selectedItem, setSelectedItem] = useState({});
+
+  const handleItemPress = selectedItem => {
+    setSelectedItem(selectedItem);
+    setDetailsModalVisible(true);
+  };
+
+  const handleDetailsModalClosePress = () => {
+    setDetailsModalVisible(false);
+  };
+
+  const handleDetailsModalRequestClose = () => {
+    setDetailsModalVisible(false);
+  };
 
   return (
     <View style={styles.container}>
@@ -15,7 +39,9 @@ const IncomeExpenseList = props => {
           <Text style={styles.title}>{title}</Text>
         )}
         renderItem={({item}) => (
-          <View style={styles.itemContainer}>
+          <TouchableOpacity
+            style={styles.itemContainer}
+            onPress={() => handleItemPress(item)}>
             <Text style={styles.itemDescription}>{item.description}</Text>
             <Text
               style={[
@@ -24,8 +50,15 @@ const IncomeExpenseList = props => {
               ]}>
               {item.value}
             </Text>
-          </View>
+          </TouchableOpacity>
         )}
+      />
+
+      <IncomeExpenseDetailsModal
+        visible={detailsModalVisible}
+        onClosePress={handleDetailsModalClosePress}
+        onRequestClose={handleDetailsModalRequestClose}
+        data={selectedItem}
       />
     </View>
   );
