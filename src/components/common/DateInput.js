@@ -16,7 +16,7 @@ const DateInput = props => {
   };
 
   const handleDateChange = (event, selectedDate) => {
-    setDate(selectedDate);
+    if (selectedDate) setDate(selectedDate);
     setDatePickerVisible(false);
   };
 
@@ -35,6 +35,7 @@ const DateInput = props => {
           onChange={handleDateChange}
           mode="date"
           maximumDate={maximumDate}
+          display="spinner"
         />
       )}
     </TouchableOpacity>
