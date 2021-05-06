@@ -15,7 +15,6 @@ const TouchableText = props => {
 const styles = StyleSheet.create({
   touchable: {
     padding: 10,
-    marginVertical: 10,
   },
   text: {
     fontSize: 16,
