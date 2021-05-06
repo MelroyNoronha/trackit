@@ -4,7 +4,7 @@ import {View, Text, Modal, TouchableOpacity, StyleSheet} from 'react-native';
 import colors from '../../utils/colors';
 
 const ModalWrapper = props => {
-  const {visible, title, handleClosePress, children} = props;
+  const {visible, title, onClosePress, onRequestClose, children} = props;
 
   return (
     <Modal
@@ -12,13 +12,13 @@ const ModalWrapper = props => {
       visible={visible}
       transparent
       statusBarTranslucent
-      onRequestClose={handleClosePress}>
+      onRequestClose={onRequestClose}>
       <View style={styles.modalBackground}>
         <View style={styles.modalView}>
           <View style={styles.modalHeader}>
             <Text style={styles.title}>{title}</Text>
             <TouchableOpacity
-              onPress={handleClosePress}
+              onPress={onClosePress}
               style={styles.closeTouchable}>
               <Text style={styles.closeIcon}>&#x2715;</Text>
             </TouchableOpacity>
