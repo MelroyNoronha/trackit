@@ -2,10 +2,10 @@ import React, {useState} from 'react';
 import {StyleSheet, View, Text, StatusBar} from 'react-native';
 
 import colors from './utils/colors';
-import Header from './components/Header';
-import Dashboard from './components/Dashboard';
-import IncomeExpenseList from './components/IncomeExpenseList';
-import AddButton from './components/AddButton';
+import Header from './components/Home/Header';
+import Dashboard from './components/Home/Dashboard';
+import IncomeExpenseList from './components/Home/IncomeExpenseList';
+import AddButton from './components/Home/AddButton';
 import AddIncomeExpenseModal from './components/AddIncomeExpenseModal';
 
 const dummyData = [
