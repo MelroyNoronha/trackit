@@ -1,33 +1,44 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet} from 'react-native';
 
 import ModalWrapper from './common/ModalWrapper';
 import AddEditForm from './common/AddEditForm';
 
-const AddIncomeExpenseModal = props => {
-  const {visible, onClosePress, onRequestClose} = props;
+const EditIncomeExpenseModal = props => {
+  const {visible, onClosePress, onRequestClose, data} = props;
 
-  const [incomeOrExpense, setIncomeOrExpense] = useState('income');
+  const [incomeOrExpense, setIncomeOrExpense] = useState(
+    data.isExpense ? 'expense' : 'income',
+  );
 
-  const [amount, setAmount] = useState('');
+  const [amount, setAmount] = useState(data.value);
+
+  const [description, setDescription] = useState(data.description);
+
+  const [date, setDate] = useState(new Date(data.date));
+
+  useEffect(() => {
+    const {isExpense, description, value, date} = data;
+
+    setIncomeOrExpense(isExpense ? 'expense' : 'income');
+    setAmount(value);
+    setDescription(description);
+    setDate(new Date(date));
+  }, [data]);
 
   const handleAmountTextChange = amount => {
     setAmount(amount);
   };
 
-  const [description, setDescription] = useState('');
-
   const handleDescriptionTextChange = description => {
     setDescription(description);
   };
-
-  const [date, setDate] = useState(new Date());
 
   const handleSavePress = () => {};
 
   return (
     <ModalWrapper
-      title="Add Income/Expense"
+      title="Edit Income/Expense"
       visible={visible}
       onClosePress={onClosePress}
       onRequestClose={onRequestClose}>
@@ -48,4 +59,4 @@ const AddIncomeExpenseModal = props => {
 
 const styles = StyleSheet.create({});
 
-export default AddIncomeExpenseModal;
+export default EditIncomeExpenseModal;

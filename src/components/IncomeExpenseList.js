@@ -9,11 +9,14 @@ import {
 
 import colors from '../utils/colors';
 import IncomeExpenseDetailsModal from './IncomeExpenseDetailsModal';
+import EditIncomeExpenseModal from './EditIncomeExpenseModal';
 
 const IncomeExpenseList = props => {
   const {data} = props;
 
   const [detailsModalVisible, setDetailsModalVisible] = useState(false);
+
+  const [editModalVisible, setEditModalVisible] = useState(false);
 
   const [selectedItem, setSelectedItem] = useState({});
 
@@ -28,6 +31,19 @@ const IncomeExpenseList = props => {
 
   const handleDetailsModalRequestClose = () => {
     setDetailsModalVisible(false);
+  };
+
+  const handleEditModalClosePress = () => {
+    setEditModalVisible(false);
+  };
+
+  const handleEditModalRequestClose = () => {
+    setEditModalVisible(false);
+  };
+
+  const handleEditPress = () => {
+    setDetailsModalVisible(false);
+    setEditModalVisible(true);
   };
 
   return (
@@ -58,6 +74,14 @@ const IncomeExpenseList = props => {
         visible={detailsModalVisible}
         onClosePress={handleDetailsModalClosePress}
         onRequestClose={handleDetailsModalRequestClose}
+        data={selectedItem}
+        onEditPress={handleEditPress}
+      />
+
+      <EditIncomeExpenseModal
+        visible={editModalVisible}
+        onClosePress={handleEditModalClosePress}
+        onRequestClose={handleEditModalRequestClose}
         data={selectedItem}
       />
     </View>
