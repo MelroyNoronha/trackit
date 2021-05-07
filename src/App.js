@@ -1,12 +1,6 @@
-import React, {useState} from 'react';
-import {StyleSheet, View, Text, StatusBar} from 'react-native';
+import React from 'react';
 
-import colors from './utils/colors';
-import Header from './components/Home/Header';
-import Dashboard from './components/Home/Dashboard';
-import IncomeExpenseList from './components/Home/IncomeExpenseList';
-import AddButton from './components/Home/AddButton';
-import AddIncomeExpenseModal from './components/AddIncomeExpenseModal';
+import Home from './components/Home';
 
 const dummyData = [
   {
@@ -43,41 +37,7 @@ const dummyData = [
 ];
 
 const App = () => {
-  const [addModalVisible, setAddModalVisible] = useState(false);
-
-  const handleAddButtonPress = () => {
-    setAddModalVisible(true);
-  };
-
-  const handleAddModalClosePress = () => {
-    setAddModalVisible(false);
-  };
-
-  const handleAddModalRequestClose = () => {
-    setAddModalVisible(false);
-  };
-
-  return (
-    <View style={styles.container}>
-      <StatusBar backgroundColor={colors.primary} />
-      <Header />
-      <Dashboard balance="$3,000" income="$7,329" expense="$4,329" />
-      <IncomeExpenseList data={dummyData} />
-      <AddButton handleAddButtonPress={handleAddButtonPress} />
-      <AddIncomeExpenseModal
-        visible={addModalVisible}
-        onClosePress={handleAddModalClosePress}
-        onRequestClose={handleAddModalRequestClose}
-      />
-    </View>
-  );
+  return <Home data={dummyData} />;
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.light,
-  },
-});
 
 export default App;
