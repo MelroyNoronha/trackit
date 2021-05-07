@@ -6,13 +6,11 @@ import TouchableText from './common/TouchableText';
 import colors from '../utils/colors';
 
 const IncomeExpenseDetailsModal = props => {
-  const {visible, onClosePress, onRequestClose, data} = props;
+  const {visible, onClosePress, onRequestClose, data, onEditPress} = props;
 
   const {isExpense, description, value, date} = data;
 
   const formattedDate = new Date(date).toDateString();
-
-  const handleEditPress = () => {};
 
   const handleDeletePress = () => {};
 
@@ -31,7 +29,7 @@ const IncomeExpenseDetailsModal = props => {
       <TouchableText
         text="Edit"
         textColor={colors.primary}
-        onPress={handleEditPress}
+        onPress={onEditPress}
       />
       <TouchableText
         text="Delete"
