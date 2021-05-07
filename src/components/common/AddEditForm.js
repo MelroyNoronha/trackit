@@ -39,7 +39,7 @@ const AddEditForm = props => {
       <DateInput date={date} setDate={setDate} maximumDate={new Date()} />
       <TouchableText
         text="Save"
-        textColor={colors.green}
+        textColor={colors.primary}
         onPress={onSavePress}
       />
     </>
