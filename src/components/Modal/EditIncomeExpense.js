@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {StyleSheet} from 'react-native';
 
-import ModalWrapper from './common/ModalWrapper';
-import AddEditForm from './common/AddEditForm';
+import ModalWrapper from '../common/ModalWrapper';
+import AddEditForm from '../common/AddEditForm';
 
 const EditIncomeExpenseModal = props => {
   const {visible, onClosePress, onRequestClose, data} = props;

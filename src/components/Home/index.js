@@ -6,7 +6,7 @@ import Header from './Header';
 import Dashboard from './Dashboard';
 import IncomeExpenseList from './IncomeExpenseList';
 import AddButton from './AddButton';
-import AddIncomeExpenseModal from '../AddIncomeExpenseModal';
+import AddIncomeExpenseModal from '../Modal/AddIncomeExpense';
 
 const Home = props => {
   const {data} = props;

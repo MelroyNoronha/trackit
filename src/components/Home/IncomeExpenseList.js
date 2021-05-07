@@ -8,8 +8,8 @@ import {
 } from 'react-native';
 
 import colors from '../../utils/colors';
-import IncomeExpenseDetailsModal from '../IncomeExpenseDetailsModal';
-import EditIncomeExpenseModal from '../EditIncomeExpenseModal';
+import IncomeExpenseDetailsModal from '../Modal/IncomeExpenseDetails';
+import EditIncomeExpenseModal from '../Modal/EditIncomeExpense';
 
 const IncomeExpenseList = props => {
   const {data} = props;

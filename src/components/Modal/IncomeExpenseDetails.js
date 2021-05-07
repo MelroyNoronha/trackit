@@ -1,9 +1,9 @@
 import React from 'react';
 import {Text, StyleSheet} from 'react-native';
 
-import ModalWrapper from './common/ModalWrapper';
-import TouchableText from './common/TouchableText';
-import colors from '../utils/colors';
+import ModalWrapper from '../common/ModalWrapper';
+import TouchableText from '../common/TouchableText';
+import colors from '../../utils/colors';
 
 const IncomeExpenseDetailsModal = props => {
   const {visible, onClosePress, onRequestClose, data, onEditPress} = props;
