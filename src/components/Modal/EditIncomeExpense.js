@@ -3,6 +3,7 @@ import {StyleSheet} from 'react-native';
 
 import ModalWrapper from '../common/ModalWrapper';
 import AddEditForm from '../common/AddEditForm';
+import editIncomeExpense from '../../functions/editIncomeExpense';
 
 const EditIncomeExpenseModal = props => {
   const {visible, setVisible, data} = props;
@@ -34,7 +35,18 @@ const EditIncomeExpenseModal = props => {
     setDescription(description);
   };
 
-  const handleSavePress = () => {};
+  const handleSavePress = () => {
+    editIncomeExpense({
+      id: data.id,
+      amount,
+      description,
+      isIncome: incomeOrExpense === 'income',
+      isExpense: incomeOrExpense === 'expense',
+      date,
+    });
+
+    setVisible(false);
+  };
 
   handleClosePress = () => {
     setVisible(false);
