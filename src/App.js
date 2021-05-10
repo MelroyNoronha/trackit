@@ -1,43 +1,35 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Home from './components/Home';
-
-const dummyData = [
-  {
-    title: 'Today',
-    data: [
-      {
-        isExpense: true,
-        isIncome: false,
-        description: 'Car tyre change',
-        value: '$329',
-        date: new Date(),
-      },
-      {
-        isExpense: true,
-        isIncome: false,
-        description: 'Furniture',
-        value: '$4,000',
-        date: new Date(),
-      },
-    ],
-  },
-  {
-    title: 'April 12, 2021',
-    data: [
-      {
-        isExpense: false,
-        isIncome: true,
-        description: 'Salary',
-        value: '$7,329',
-        date: new Date('2021-04-12'),
-      },
-    ],
-  },
-];
+import parseDataForSectionList from './functions/parseDataForSectionList';
 
 const App = () => {
-  return <Home data={dummyData} />;
+  const [trackItData, setTrackItData] = useState([]);
+
+  useEffect(() => {
+    const getTrackItData = async () => {
+      try {
+        const trackItData = await AsyncStorage.getItem('@trackItData');
+
+        if (trackItData !== null) {
+          const trackItDataParsed = parseDataForSectionList(
+            JSON.parse(trackItData),
+          );
+          setTrackItData(trackItDataParsed);
+        } else {
+          await AsyncStorage.setItem('@trackItData', JSON.stringify([]));
+          setTrackItData([]);
+        }
+      } catch (e) {
+        alert('Something went wrong. Please restart the application.');
+      }
+    };
+
+    getTrackItData();
+  });
+
+  return <Home data={trackItData} />;
 };
 
 export default App;

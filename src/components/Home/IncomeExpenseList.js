@@ -25,22 +25,6 @@ const IncomeExpenseList = props => {
     setDetailsModalVisible(true);
   };
 
-  const handleDetailsModalClosePress = () => {
-    setDetailsModalVisible(false);
-  };
-
-  const handleDetailsModalRequestClose = () => {
-    setDetailsModalVisible(false);
-  };
-
-  const handleEditModalClosePress = () => {
-    setEditModalVisible(false);
-  };
-
-  const handleEditModalRequestClose = () => {
-    setEditModalVisible(false);
-  };
-
   const handleEditPress = () => {
     setDetailsModalVisible(false);
     setEditModalVisible(true);
@@ -64,7 +48,7 @@ const IncomeExpenseList = props => {
                 styles.itemValue,
                 {color: item.isExpense ? colors.red : colors.green},
               ]}>
-              {item.value}
+              {item.amount}
             </Text>
           </TouchableOpacity>
         )}
@@ -72,16 +56,14 @@ const IncomeExpenseList = props => {
 
       <IncomeExpenseDetailsModal
         visible={detailsModalVisible}
-        onClosePress={handleDetailsModalClosePress}
-        onRequestClose={handleDetailsModalRequestClose}
+        setVisible={setDetailsModalVisible}
         data={selectedItem}
         onEditPress={handleEditPress}
       />
 
       <EditIncomeExpenseModal
         visible={editModalVisible}
-        onClosePress={handleEditModalClosePress}
-        onRequestClose={handleEditModalRequestClose}
+        setVisible={setEditModalVisible}
         data={selectedItem}
       />
     </View>

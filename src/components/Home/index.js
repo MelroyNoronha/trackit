@@ -17,14 +17,6 @@ const Home = props => {
     setAddModalVisible(true);
   };
 
-  const handleAddModalClosePress = () => {
-    setAddModalVisible(false);
-  };
-
-  const handleAddModalRequestClose = () => {
-    setAddModalVisible(false);
-  };
-
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor={colors.primary} />
@@ -34,8 +26,7 @@ const Home = props => {
       <AddButton handleAddButtonPress={handleAddButtonPress} />
       <AddIncomeExpenseModal
         visible={addModalVisible}
-        onClosePress={handleAddModalClosePress}
-        onRequestClose={handleAddModalRequestClose}
+        setVisible={setAddModalVisible}
       />
     </View>
   );

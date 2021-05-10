@@ -3,34 +3,69 @@ import {StyleSheet} from 'react-native';
 
 import ModalWrapper from '../common/ModalWrapper';
 import AddEditForm from '../common/AddEditForm';
+import saveIncomeExpense from '../../functions/saveIncomeExpense';
 
 const AddIncomeExpenseModal = props => {
-  const {visible, onClosePress, onRequestClose} = props;
+  const {visible, setVisible} = props;
 
   const [incomeOrExpense, setIncomeOrExpense] = useState('income');
 
   const [amount, setAmount] = useState('');
 
+  const [description, setDescription] = useState('');
+
+  const [date, setDate] = useState(new Date());
+
   const handleAmountTextChange = amount => {
     setAmount(amount);
   };
-
-  const [description, setDescription] = useState('');
 
   const handleDescriptionTextChange = description => {
     setDescription(description);
   };
 
-  const [date, setDate] = useState(new Date());
+  const handleSavePress = () => {
+    if (!amount) {
+      alert('Please enter amount.');
+      return false;
+    }
 
-  const handleSavePress = () => {};
+    if (!description) {
+      alert('Please enter a description.');
+      return false;
+    }
+
+    saveIncomeExpense({
+      amount,
+      description,
+      isExpense: incomeOrExpense === 'expense',
+      isIncome: incomeOrExpense === 'income',
+      date,
+    });
+
+    setIncomeOrExpense('income');
+    setAmount('');
+    setDescription('');
+    setDate(new Date());
+
+    setVisible(false);
+    return true;
+  };
+
+  handleClosePress = () => {
+    setVisible(false);
+  };
+
+  handleRequestClose = () => {
+    setVisible(false);
+  };
 
   return (
     <ModalWrapper
       title="Add Income/Expense"
       visible={visible}
-      onClosePress={onClosePress}
-      onRequestClose={onRequestClose}>
+      onClosePress={handleClosePress}
+      onRequestClose={handleRequestClose}>
       <AddEditForm
         incomeOrExpense={incomeOrExpense}
         setIncomeOrExpense={setIncomeOrExpense}

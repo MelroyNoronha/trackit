@@ -1,19 +1,18 @@
 import React from 'react';
-import {View, Text, StyleSheet, Dimensions} from 'react-native';
+import {SafeAreaView, Text, StyleSheet} from 'react-native';
 
 import colors from '../../utils/colors';
 
 const Header = () => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.text}>TrackIt</Text>
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    height: Dimensions.get('screen').height / 16,
     width: '100%',
     backgroundColor: colors.primary,
     alignItems: 'center',
@@ -23,6 +22,7 @@ const styles = StyleSheet.create({
     color: colors.light,
     fontSize: 18,
     fontWeight: 'bold',
+    marginVertical: 5,
   },
 });
 
