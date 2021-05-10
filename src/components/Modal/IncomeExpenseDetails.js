@@ -8,7 +8,7 @@ import colors from '../../utils/colors';
 const IncomeExpenseDetailsModal = props => {
   const {visible, onClosePress, onRequestClose, data, onEditPress} = props;
 
-  const {isExpense, description, value, date} = data;
+  const {isExpense, description, amount, date} = data;
 
   const formattedDate = new Date(date).toDateString();
 
@@ -22,7 +22,7 @@ const IncomeExpenseDetailsModal = props => {
       onRequestClose={onRequestClose}>
       <Text
         style={[styles.value, {color: isExpense ? colors.red : colors.green}]}>
-        {value}
+        {amount}
       </Text>
       <Text style={styles.description}>{description}</Text>
       <Text style={styles.date}>{formattedDate}</Text>

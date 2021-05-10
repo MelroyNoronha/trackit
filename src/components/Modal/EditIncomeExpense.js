@@ -11,17 +11,17 @@ const EditIncomeExpenseModal = props => {
     data.isExpense ? 'expense' : 'income',
   );
 
-  const [amount, setAmount] = useState(data.value);
+  const [amount, setAmount] = useState(data.amount);
 
   const [description, setDescription] = useState(data.description);
 
   const [date, setDate] = useState(new Date(data.date));
 
   useEffect(() => {
-    const {isExpense, description, value, date} = data;
+    const {isExpense, description, amount, date} = data;
 
     setIncomeOrExpense(isExpense ? 'expense' : 'income');
-    setAmount(value);
+    setAmount(amount);
     setDescription(description);
     setDate(new Date(date));
   }, [data]);

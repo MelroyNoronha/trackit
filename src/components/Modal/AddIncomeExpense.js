@@ -36,7 +36,7 @@ const AddIncomeExpenseModal = props => {
     }
 
     saveIncomeExpense({
-      value: amount,
+      amount,
       description,
       isExpense: incomeOrExpense === 'expense',
       isIncome: incomeOrExpense === 'income',

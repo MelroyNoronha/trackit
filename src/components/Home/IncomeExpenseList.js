@@ -64,7 +64,7 @@ const IncomeExpenseList = props => {
                 styles.itemValue,
                 {color: item.isExpense ? colors.red : colors.green},
               ]}>
-              {item.value}
+              {item.amount}
             </Text>
           </TouchableOpacity>
         )}
