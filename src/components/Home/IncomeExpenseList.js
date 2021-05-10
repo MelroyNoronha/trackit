@@ -80,8 +80,7 @@ const IncomeExpenseList = props => {
 
       <EditIncomeExpenseModal
         visible={editModalVisible}
-        onClosePress={handleEditModalClosePress}
-        onRequestClose={handleEditModalRequestClose}
+        setVisible={setEditModalVisible}
         data={selectedItem}
       />
     </View>

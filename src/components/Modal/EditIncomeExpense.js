@@ -5,7 +5,7 @@ import ModalWrapper from '../common/ModalWrapper';
 import AddEditForm from '../common/AddEditForm';
 
 const EditIncomeExpenseModal = props => {
-  const {visible, onClosePress, onRequestClose, data} = props;
+  const {visible, setVisible, data} = props;
 
   const [incomeOrExpense, setIncomeOrExpense] = useState(
     data.isExpense ? 'expense' : 'income',
@@ -36,12 +36,20 @@ const EditIncomeExpenseModal = props => {
 
   const handleSavePress = () => {};
 
+  handleClosePress = () => {
+    setVisible(false);
+  };
+
+  handleRequestClose = () => {
+    setVisible(false);
+  };
+
   return (
     <ModalWrapper
       title="Edit Income/Expense"
       visible={visible}
-      onClosePress={onClosePress}
-      onRequestClose={onRequestClose}>
+      onClosePress={handleClosePress}
+      onRequestClose={handleRequestClose}>
       <AddEditForm
         incomeOrExpense={incomeOrExpense}
         setIncomeOrExpense={setIncomeOrExpense}
