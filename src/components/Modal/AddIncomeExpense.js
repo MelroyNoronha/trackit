@@ -6,7 +6,7 @@ import AddEditForm from '../common/AddEditForm';
 import saveIncomeExpense from '../../functions/saveIncomeExpense';
 
 const AddIncomeExpenseModal = props => {
-  const {visible, onClosePress, onRequestClose} = props;
+  const {visible, setVisible} = props;
 
   const [incomeOrExpense, setIncomeOrExpense] = useState('income');
 
@@ -48,16 +48,24 @@ const AddIncomeExpenseModal = props => {
     setDescription('');
     setDate(new Date());
 
-    onClosePress();
+    setVisible(false);
     return true;
+  };
+
+  handleClosePress = () => {
+    setVisible(false);
+  };
+
+  handleRequestClose = () => {
+    setVisible(false);
   };
 
   return (
     <ModalWrapper
       title="Add Income/Expense"
       visible={visible}
-      onClosePress={onClosePress}
-      onRequestClose={onRequestClose}>
+      onClosePress={handleClosePress}
+      onRequestClose={handleRequestClose}>
       <AddEditForm
         incomeOrExpense={incomeOrExpense}
         setIncomeOrExpense={setIncomeOrExpense}
