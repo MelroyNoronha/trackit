@@ -25,22 +25,6 @@ const IncomeExpenseList = props => {
     setDetailsModalVisible(true);
   };
 
-  const handleDetailsModalClosePress = () => {
-    setDetailsModalVisible(false);
-  };
-
-  const handleDetailsModalRequestClose = () => {
-    setDetailsModalVisible(false);
-  };
-
-  const handleEditModalClosePress = () => {
-    setEditModalVisible(false);
-  };
-
-  const handleEditModalRequestClose = () => {
-    setEditModalVisible(false);
-  };
-
   const handleEditPress = () => {
     setDetailsModalVisible(false);
     setEditModalVisible(true);
@@ -72,8 +56,7 @@ const IncomeExpenseList = props => {
 
       <IncomeExpenseDetailsModal
         visible={detailsModalVisible}
-        onClosePress={handleDetailsModalClosePress}
-        onRequestClose={handleDetailsModalRequestClose}
+        setVisible={setDetailsModalVisible}
         data={selectedItem}
         onEditPress={handleEditPress}
       />

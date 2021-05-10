@@ -6,7 +6,7 @@ import TouchableText from '../common/TouchableText';
 import colors from '../../utils/colors';
 
 const IncomeExpenseDetailsModal = props => {
-  const {visible, onClosePress, onRequestClose, data, onEditPress} = props;
+  const {visible, setVisible, data, onEditPress} = props;
 
   const {isExpense, description, amount, date} = data;
 
@@ -14,12 +14,20 @@ const IncomeExpenseDetailsModal = props => {
 
   const handleDeletePress = () => {};
 
+  handleClosePress = () => {
+    setVisible(false);
+  };
+
+  handleRequestClose = () => {
+    setVisible(false);
+  };
+
   return (
     <ModalWrapper
       title={isExpense ? 'Expense' : 'Income'}
       visible={visible}
-      onClosePress={onClosePress}
-      onRequestClose={onRequestClose}>
+      onClosePress={handleClosePress}
+      onRequestClose={handleRequestClose}>
       <Text
         style={[styles.value, {color: isExpense ? colors.red : colors.green}]}>
         {amount}
