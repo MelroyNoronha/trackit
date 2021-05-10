@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Home from './components/Home';
+import parseDataForSectionList from './functions/parseDataForSectionList';
 
 const App = () => {
   const [trackItData, setTrackItData] = useState([]);
@@ -12,7 +13,9 @@ const App = () => {
         const trackItData = await AsyncStorage.getItem('@trackItData');
 
         if (trackItData !== null) {
-          const trackItDataParsed = JSON.parse(trackItData);
+          const trackItDataParsed = parseDataForSectionList(
+            JSON.parse(trackItData),
+          );
           setTrackItData(trackItDataParsed);
         } else {
           await AsyncStorage.setItem('@trackItData', JSON.stringify([]));
@@ -24,7 +27,7 @@ const App = () => {
     };
 
     initTrackItApp();
-  }, []);
+  });
 
   return <Home data={trackItData} />;
 };
