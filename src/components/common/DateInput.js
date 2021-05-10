@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {TouchableOpacity, TextInput, StyleSheet} from 'react-native';
+import {TouchableOpacity, TextInput, Platform, StyleSheet} from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 import colors from '../../utils/colors';
@@ -12,12 +12,12 @@ const DateInput = props => {
   const formattedDateString = new Date(date).toDateString();
 
   const handlePress = () => {
-    setDatePickerVisible(true);
+    setDatePickerVisible(!datePickerVisible);
   };
 
   const handleDateChange = (event, selectedDate) => {
     if (selectedDate) setDate(selectedDate);
-    setDatePickerVisible(false);
+    setDatePickerVisible(Platform.OS === 'ios');
   };
 
   return (
@@ -45,14 +45,15 @@ const DateInput = props => {
 const styles = StyleSheet.create({
   touchable: {
     width: '90%',
+    paddingVertical: 10,
+    borderWidth: 1,
+    borderRadius: 10,
+    borderColor: colors.borderGrey,
+    marginVertical: 15,
   },
   textInput: {
-    borderWidth: 1,
-    borderColor: colors.borderGrey,
-    borderRadius: 10,
-
-    marginVertical: 15,
-    paddingHorizontal: 15,
+    paddingLeft: 15,
+    paddingVertical: 0,
     color: colors.darkText,
   },
 });
