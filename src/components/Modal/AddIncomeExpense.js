@@ -12,17 +12,17 @@ const AddIncomeExpenseModal = props => {
 
   const [amount, setAmount] = useState('');
 
+  const [description, setDescription] = useState('');
+
+  const [date, setDate] = useState(new Date());
+
   const handleAmountTextChange = amount => {
     setAmount(amount);
   };
 
-  const [description, setDescription] = useState('');
-
   const handleDescriptionTextChange = description => {
     setDescription(description);
   };
-
-  const [date, setDate] = useState(new Date());
 
   const handleSavePress = () => {
     if (!amount) {
