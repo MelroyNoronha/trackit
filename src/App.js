@@ -8,7 +8,7 @@ const App = () => {
   const [trackItData, setTrackItData] = useState([]);
 
   useEffect(() => {
-    const initTrackItApp = async () => {
+    const getTrackItData = async () => {
       try {
         const trackItData = await AsyncStorage.getItem('@trackItData');
 
@@ -26,7 +26,7 @@ const App = () => {
       }
     };
 
-    initTrackItApp();
+    getTrackItData();
   });
 
   return <Home data={trackItData} />;
