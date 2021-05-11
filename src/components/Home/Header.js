@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     color: colors.light,
     fontSize: 18,
     fontWeight: 'bold',
-    marginVertical: 5,
+    marginVertical: 10,
   },
 });
 
