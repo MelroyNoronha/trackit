@@ -3,9 +3,16 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Home from './components/Home';
 import parseDataForSectionList from './functions/parseDataForSectionList';
+import getTotalIncomeExpense from './functions/getTotalIncomeExpense';
 
 const App = () => {
   const [trackItData, setTrackItData] = useState([]);
+
+  const [balance, setBalance] = useState(0);
+
+  const [totalIncome, setTotalIncome] = useState(0);
+
+  const [totalExpense, setTotalExpense] = useState(0);
 
   useEffect(() => {
     const getTrackItData = async () => {
@@ -16,6 +23,19 @@ const App = () => {
           const trackItDataParsed = parseDataForSectionList(
             JSON.parse(trackItData),
           );
+          const totalIncome = getTotalIncomeExpense({
+            trackItData: JSON.parse(trackItData),
+            income: true,
+          });
+          const totalExpense = getTotalIncomeExpense({
+            trackItData: JSON.parse(trackItData),
+            expense: true,
+          });
+          const balance = totalIncome - totalExpense;
+
+          setTotalIncome(totalIncome);
+          setTotalExpense(totalExpense);
+          setBalance(balance);
           setTrackItData(trackItDataParsed);
         } else {
           await AsyncStorage.setItem('@trackItData', JSON.stringify([]));
@@ -29,7 +49,14 @@ const App = () => {
     getTrackItData();
   });
 
-  return <Home data={trackItData} />;
+  return (
+    <Home
+      data={trackItData}
+      balance={balance}
+      totalIncome={totalIncome}
+      totalExpense={totalExpense}
+    />
+  );
 };
 
 export default App;
