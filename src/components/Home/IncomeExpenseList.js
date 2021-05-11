@@ -33,6 +33,7 @@ const IncomeExpenseList = props => {
   return (
     <View style={styles.container}>
       <SectionList
+        stickySectionHeadersEnabled={false}
         sections={data}
         keyExtractor={(_item, index) => index}
         renderSectionHeader={({section: {title}}) => (

@@ -9,7 +9,7 @@ import AddButton from './AddButton';
 import AddIncomeExpenseModal from '../Modal/AddIncomeExpense';
 
 const Home = props => {
-  const {data} = props;
+  const {data, balance, totalIncome, totalExpense} = props;
 
   const [addModalVisible, setAddModalVisible] = useState(false);
 
@@ -21,7 +21,11 @@ const Home = props => {
     <View style={styles.container}>
       <StatusBar backgroundColor={colors.primary} />
       <Header />
-      <Dashboard balance="$3,000" income="$7,329" expense="$4,329" />
+      <Dashboard
+        balance={balance}
+        income={totalIncome}
+        expense={totalExpense}
+      />
       <IncomeExpenseList data={data} />
       <AddButton handleAddButtonPress={handleAddButtonPress} />
       <AddIncomeExpenseModal
