@@ -20,7 +20,7 @@ const Home = props => {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor={colors.primary} />
-      <Header />
+      <Header text="TrackIt" />
       <Dashboard
         balance={balance}
         income={totalIncome}
