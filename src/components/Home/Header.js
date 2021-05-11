@@ -3,10 +3,12 @@ import {SafeAreaView, Text, StyleSheet} from 'react-native';
 
 import colors from '../../utils/colors';
 
-const Header = () => {
+const Header = props => {
+  const {text} = props;
+
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.text}>TrackIt</Text>
+      <Text style={styles.text}>{text}</Text>
     </SafeAreaView>
   );
 };
@@ -22,7 +24,7 @@ const styles = StyleSheet.create({
     color: colors.light,
     fontSize: 18,
     fontWeight: 'bold',
-    marginVertical: 5,
+    marginVertical: 10,
   },
 });
 

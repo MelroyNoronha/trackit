@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet, Dimensions} from 'react-native';
 
 import colors from '../../utils/colors';
+import strings from '../../utils/strings';
 
 const Dashboard = props => {
   const {balance, income, expense} = props;
@@ -10,7 +11,10 @@ const Dashboard = props => {
     <View style={styles.container}>
       <View style={styles.leftPane}>
         <Text style={styles.label}>Balance</Text>
-        <Text style={styles.balanceValue}>{balance}</Text>
+        <Text style={styles.balanceValue}>
+          {strings.currencySymbol}
+          {balance}
+        </Text>
       </View>
 
       <View style={styles.divider} />
@@ -18,11 +22,17 @@ const Dashboard = props => {
       <View style={styles.rightPane}>
         <View style={styles.incomeContainer}>
           <Text style={styles.label}>Income</Text>
-          <Text style={styles.incomeValue}>{income}</Text>
+          <Text style={styles.incomeValue}>
+            {strings.currencySymbol}
+            {income}
+          </Text>
         </View>
 
         <View style={styles.expenseContainer}>
-          <Text style={styles.expenseValue}>{expense}</Text>
+          <Text style={styles.expenseValue}>
+            {strings.currencySymbol}
+            {expense}
+          </Text>
           <Text style={styles.label}>Expense</Text>
         </View>
       </View>

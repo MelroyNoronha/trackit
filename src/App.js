@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import RNBootSplash from 'react-native-bootsplash';
 
 import Home from './components/Home';
 import parseDataForSectionList from './functions/parseDataForSectionList';
@@ -46,7 +47,9 @@ const App = () => {
       }
     };
 
-    getTrackItData();
+    getTrackItData().finally(() => {
+      RNBootSplash.hide({fade: true});
+    });
   });
 
   return (

@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 
 import colors from '../../utils/colors';
+import strings from '../../utils/strings';
 import IncomeExpenseDetailsModal from '../Modal/IncomeExpenseDetails';
 import EditIncomeExpenseModal from '../Modal/EditIncomeExpense';
 
@@ -49,6 +50,7 @@ const IncomeExpenseList = props => {
                 styles.itemValue,
                 {color: item.isExpense ? colors.red : colors.green},
               ]}>
+              {strings.currencySymbol}
               {item.amount}
             </Text>
           </TouchableOpacity>
