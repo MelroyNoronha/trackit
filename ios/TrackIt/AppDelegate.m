@@ -16,6 +16,8 @@
 #import <React/RCTDevLoadingView.h>
 #endif
 
+#import "RNBootSplash.h"
+
 static void InitializeFlipper(UIApplication *application) {
   FlipperClient *client = [FlipperClient sharedClient];
   SKDescriptorMapper *layoutDescriptorMapper = [[SKDescriptorMapper alloc] initWithDefaults];
@@ -54,6 +56,9 @@ static void InitializeFlipper(UIApplication *application) {
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+
+  [RNBootSplash initWithStoryboard:@"BootSplash" rootView:rootView];
+
   return YES;
 }
 
