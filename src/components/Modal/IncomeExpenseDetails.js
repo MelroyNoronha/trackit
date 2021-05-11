@@ -4,6 +4,7 @@ import {Text, StyleSheet} from 'react-native';
 import ModalWrapper from '../common/ModalWrapper';
 import TouchableText from '../common/TouchableText';
 import colors from '../../utils/colors';
+import strings from '../../utils/strings';
 import deleteIncomeExpense from '../../functions/deleteIncomeExpense';
 
 const IncomeExpenseDetailsModal = props => {
@@ -34,6 +35,7 @@ const IncomeExpenseDetailsModal = props => {
       onRequestClose={handleRequestClose}>
       <Text
         style={[styles.value, {color: isExpense ? colors.red : colors.green}]}>
+        {strings.currencySymbol}
         {amount}
       </Text>
       <Text style={styles.description}>{description}</Text>
