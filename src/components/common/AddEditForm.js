@@ -36,7 +36,7 @@ const AddEditForm = props => {
         onChangeText={onDescriptionTextChange}
         placeholder="Description"
       />
-      <DateInput date={date} setDate={setDate} maximumDate={new Date()} />
+      <DateInput date={date} setDate={setDate} />
       <TouchableText
         text="Save"
         textColor={colors.primary}
