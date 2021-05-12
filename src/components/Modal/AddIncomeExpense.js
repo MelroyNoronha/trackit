@@ -4,6 +4,7 @@ import {StyleSheet} from 'react-native';
 import ModalWrapper from '../common/ModalWrapper';
 import AddEditForm from '../common/AddEditForm';
 import saveIncomeExpense from '../../functions/saveIncomeExpense';
+import validateInputs from '../../functions/validateInputs';
 
 const AddIncomeExpenseModal = props => {
   const {visible, setVisible} = props;
@@ -25,31 +26,23 @@ const AddIncomeExpenseModal = props => {
   };
 
   const handleSavePress = () => {
-    if (!amount) {
-      alert('Please enter amount.');
-      return false;
+    const inputsAreValid = validateInputs({amount, description});
+
+    if (inputsAreValid) {
+      saveIncomeExpense({
+        amount,
+        description,
+        isExpense: incomeOrExpense === 'expense',
+        isIncome: incomeOrExpense === 'income',
+        date,
+      });
+
+      setIncomeOrExpense('income');
+      setAmount('');
+      setDescription('');
+      setDate(new Date());
+      setVisible(false);
     }
-
-    if (!description) {
-      alert('Please enter a description.');
-      return false;
-    }
-
-    saveIncomeExpense({
-      amount,
-      description,
-      isExpense: incomeOrExpense === 'expense',
-      isIncome: incomeOrExpense === 'income',
-      date,
-    });
-
-    setIncomeOrExpense('income');
-    setAmount('');
-    setDescription('');
-    setDate(new Date());
-
-    setVisible(false);
-    return true;
   };
 
   handleClosePress = () => {
