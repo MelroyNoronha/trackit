@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {TouchableOpacity, TextInput, Platform, StyleSheet} from 'react-native';
-import DateTimePicker from '@react-native-community/datetimepicker';
+import DatePicker from 'react-native-date-picker';
 
 import colors from '../../utils/colors';
 
@@ -15,11 +15,6 @@ const DateInput = props => {
     setDatePickerVisible(!datePickerVisible);
   };
 
-  const handleDateChange = (event, selectedDate) => {
-    if (selectedDate) setDate(selectedDate);
-    setDatePickerVisible(Platform.OS === 'ios');
-  };
-
   return (
     <TouchableOpacity onPress={handlePress} style={styles.touchable}>
       <TextInput
@@ -30,13 +25,7 @@ const DateInput = props => {
         editable={false}
       />
       {datePickerVisible && (
-        <DateTimePicker
-          value={date}
-          onChange={handleDateChange}
-          mode="date"
-          maximumDate={maximumDate}
-          display="spinner"
-        />
+        <DatePicker date={date} onDateChange={setDate} mode="date" />
       )}
     </TouchableOpacity>
   );
