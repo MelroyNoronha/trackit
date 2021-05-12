@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
-import {TouchableOpacity, TextInput, Platform, StyleSheet} from 'react-native';
+import {TouchableOpacity, TextInput, StyleSheet} from 'react-native';
 import DatePicker from 'react-native-date-picker';
 
 import colors from '../../utils/colors';
 
 const DateInput = props => {
-  const {date, setDate, maximumDate} = props;
+  const {date, setDate} = props;
 
   const [datePickerVisible, setDatePickerVisible] = useState(false);
 
