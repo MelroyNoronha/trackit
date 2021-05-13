@@ -1,46 +1,24 @@
-import React, {useState, useEffect} from 'react';
+import React, {useReducer, useEffect} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import RNBootSplash from 'react-native-bootsplash';
 
 import Home from './components/Home';
-import parseDataForSectionList from './functions/parseDataForSectionList';
-import getTotalIncomeExpense from './functions/getTotalIncomeExpense';
+import trackItDataReducer from './reducers/trackItData';
+import MainContext from './contexts/MainContext';
 
 const App = () => {
-  const [trackItData, setTrackItData] = useState([]);
-
-  const [balance, setBalance] = useState(0);
-
-  const [totalIncome, setTotalIncome] = useState(0);
-
-  const [totalExpense, setTotalExpense] = useState(0);
+  const [trackItData, trackItDataDispatch] = useReducer(trackItDataReducer, []);
 
   useEffect(() => {
     const getTrackItData = async () => {
       try {
-        const trackItData = await AsyncStorage.getItem('@trackItData');
+        const storedTrackItData = await AsyncStorage.getItem('@trackItData');
 
-        if (trackItData !== null) {
-          const trackItDataParsed = parseDataForSectionList(
-            JSON.parse(trackItData),
-          );
-          const totalIncome = getTotalIncomeExpense({
-            trackItData: JSON.parse(trackItData),
-            income: true,
+        if (storedTrackItData !== null) {
+          trackItDataDispatch({
+            type: 'POPULATE_DATA',
+            data: JSON.parse(storedTrackItData),
           });
-          const totalExpense = getTotalIncomeExpense({
-            trackItData: JSON.parse(trackItData),
-            expense: true,
-          });
-          const balance = totalIncome - totalExpense;
-
-          setTotalIncome(totalIncome);
-          setTotalExpense(totalExpense);
-          setBalance(balance);
-          setTrackItData(trackItDataParsed);
-        } else {
-          await AsyncStorage.setItem('@trackItData', JSON.stringify([]));
-          setTrackItData([]);
         }
       } catch (e) {
         alert('Something went wrong. Please restart the application.');
@@ -50,15 +28,24 @@ const App = () => {
     getTrackItData().finally(() => {
       RNBootSplash.hide({fade: true});
     });
-  });
+  }, []);
+
+  useEffect(() => {
+    const storeTrackItData = async () => {
+      try {
+        await AsyncStorage.setItem('@trackItData', JSON.stringify(trackItData));
+      } catch (e) {
+        alert('Something went wrong. Please restart the application.');
+      }
+    };
+
+    storeTrackItData();
+  }, [trackItData]);
 
   return (
-    <Home
-      data={trackItData}
-      balance={balance}
-      totalIncome={totalIncome}
-      totalExpense={totalExpense}
-    />
+    <MainContext.Provider value={{trackItData, trackItDataDispatch}}>
+      <Home />
+    </MainContext.Provider>
   );
 };
 

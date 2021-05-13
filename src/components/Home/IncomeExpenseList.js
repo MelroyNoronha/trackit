@@ -11,9 +11,12 @@ import colors from '../../utils/colors';
 import strings from '../../utils/strings';
 import IncomeExpenseDetailsModal from '../Modal/IncomeExpenseDetails';
 import EditIncomeExpenseModal from '../Modal/EditIncomeExpense';
+import parseDataForSectionList from '../../functions/parseDataForSectionList';
 
 const IncomeExpenseList = props => {
   const {data} = props;
+
+  const parsedData = parseDataForSectionList(data);
 
   const [detailsModalVisible, setDetailsModalVisible] = useState(false);
 
@@ -35,7 +38,7 @@ const IncomeExpenseList = props => {
     <View style={styles.container}>
       <SectionList
         stickySectionHeadersEnabled={false}
-        sections={data}
+        sections={parsedData}
         keyExtractor={(_item, index) => index}
         renderSectionHeader={({section: {title}}) => (
           <Text style={styles.title}>{title}</Text>

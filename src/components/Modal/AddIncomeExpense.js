@@ -1,13 +1,16 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {StyleSheet} from 'react-native';
+import uuid from 'react-native-uuid';
 
 import ModalWrapper from '../common/ModalWrapper';
 import AddEditForm from '../common/AddEditForm';
-import saveIncomeExpense from '../../functions/saveIncomeExpense';
 import validateInputs from '../../functions/validateInputs';
+import MainContext from '../../contexts/MainContext';
 
 const AddIncomeExpenseModal = props => {
   const {visible, setVisible} = props;
+
+  const {trackItDataDispatch} = useContext(MainContext);
 
   const [incomeOrExpense, setIncomeOrExpense] = useState('income');
 
@@ -29,12 +32,16 @@ const AddIncomeExpenseModal = props => {
     const inputsAreValid = validateInputs({amount, description});
 
     if (inputsAreValid) {
-      saveIncomeExpense({
-        amount,
-        description,
-        isExpense: incomeOrExpense === 'expense',
-        isIncome: incomeOrExpense === 'income',
-        date,
+      trackItDataDispatch({
+        type: 'ADD_RECORD',
+        newRecord: {
+          id: uuid.v4(),
+          amount,
+          description,
+          isExpense: incomeOrExpense === 'expense',
+          isIncome: incomeOrExpense === 'income',
+          date,
+        },
       });
 
       setIncomeOrExpense('income');

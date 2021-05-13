@@ -1,21 +1,26 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Text, StyleSheet} from 'react-native';
 
 import ModalWrapper from '../common/ModalWrapper';
 import TouchableText from '../common/TouchableText';
 import colors from '../../utils/colors';
 import strings from '../../utils/strings';
-import deleteIncomeExpense from '../../functions/deleteIncomeExpense';
+import MainContext from '../../contexts/MainContext';
 
 const IncomeExpenseDetailsModal = props => {
   const {visible, setVisible, data, onEditPress} = props;
+
+  const {trackItDataDispatch} = useContext(MainContext);
 
   const {id, isExpense, description, amount, date} = data;
 
   const formattedDate = new Date(date).toDateString();
 
   const handleDeletePress = () => {
-    deleteIncomeExpense(id);
+    trackItDataDispatch({
+      type: 'DELETE_RECORD',
+      id,
+    });
     setVisible(false);
   };
 
