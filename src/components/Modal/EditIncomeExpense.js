@@ -1,13 +1,15 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {StyleSheet} from 'react-native';
 
 import ModalWrapper from '../common/ModalWrapper';
 import AddEditForm from '../common/AddEditForm';
-import editIncomeExpense from '../../functions/editIncomeExpense';
 import validateInputs from '../../functions/validateInputs';
+import MainContext from '../../contexts/MainContext';
 
 const EditIncomeExpenseModal = props => {
   const {visible, setVisible, data} = props;
+
+  const {trackItDataDispatch} = useContext(MainContext);
 
   const [incomeOrExpense, setIncomeOrExpense] = useState(
     data.isExpense ? 'expense' : 'income',
@@ -40,13 +42,16 @@ const EditIncomeExpenseModal = props => {
     const inputsAreValid = validateInputs({amount, description});
 
     if (inputsAreValid) {
-      editIncomeExpense({
+      trackItDataDispatch({
+        type: 'EDIT_RECORD',
         id: data.id,
-        amount,
-        description,
-        isIncome: incomeOrExpense === 'income',
-        isExpense: incomeOrExpense === 'expense',
-        date,
+        updatedRecord: {
+          amount,
+          description,
+          isIncome: incomeOrExpense === 'income',
+          isExpense: incomeOrExpense === 'expense',
+          date,
+        },
       });
 
       setVisible(false);
